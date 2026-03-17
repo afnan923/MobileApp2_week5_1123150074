@@ -22,5 +22,16 @@ func AuthMiddleware() gin.HandlerFunc {
 			})
 			return
 		}
+		// 2. Validasi format "Bearer <token>" 
+		parts := strings.SplitN(authHeader, " ", 2) 
+		if len(parts) != 2 || parts[0] != "Bearer" { 
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{ 
+		"success":    false,
+		"message": "Format token salah. Gunakan: Bearer <token>", 
+		"error_code": "INVALID_TOKEN_FORMAT",
+		})
+		return 
 	}
+	tokenString := parts[1]
+	
 }
