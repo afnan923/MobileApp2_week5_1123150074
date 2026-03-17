@@ -18,6 +18,13 @@ type AuthService struct {
 	userRepo *repositories.UserRepository
 }
 
+// 
+func NewAuthService() *AuthService {
+    return &AuthService{
+        userRepo: repositories.NewUserRepository(), // Pastikan NewUserRepository sudah ada di package repositories
+    }
+}
+
 // VerifyFirebaseToken memverifikasi token dari Firebase,
 // memastikan email sudah verified, lalu mengembalikan Backend JWT
 func (s *AuthService) VerifyFirebaseToken(firebaseToken string) (string, *models.User, error) {
