@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/afnan923/MobileApp2_week5_1123150074/models"
 	"github.com/afnan923/MobileApp2_week5_1123150074/config"
+	"github.com/afnan923/MobileApp2_week5_1123150074/models"
 )
 
 type ProductRepository struct{}

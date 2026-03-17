@@ -2,12 +2,12 @@ package config
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"github.com/afnan923/MobileApp2_week5_1123150074/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"log"
+	"os"
 )
 
 // DB adalah instance GORM global yang dipakai di seluruh aplikasi
