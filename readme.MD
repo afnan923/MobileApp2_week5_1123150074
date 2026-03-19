@@ -56,7 +56,8 @@ catalog_1123150074
 Berikut Endpoint yang tersedia pada sistem.
 ### Health Check
 ```
-GET /v1/health
+GET 
+/v1/health
 ```
 ![alt text](images/healthpostman.png)
 ![alt text](images/healthweb.png)
@@ -64,16 +65,27 @@ GET /v1/health
 ---
 
 ### Authentication
+#### Login
 ```
-POST /v1/auth/verify-token
+POST 
+https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{FIREBASE_API_KEY}}
 ```
 ![alt text](images/login.png)
 
+#### Verify
+```
+POST 
+/v1/auth/verify-token
+```
+![alt text](images/verify.png)
+
+---
 ---
 
 ### Products
 ```
-GET /v1/products
+GET 
+/v1/products
 ```
 ![alt text](images/getproduct.png)
 ```
