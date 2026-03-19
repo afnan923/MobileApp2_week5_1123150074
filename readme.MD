@@ -1,5 +1,6 @@
 # Testing API Golang with Postman
 ## Struktur Project
+```
 catalog_1123150074│
 ├── main.go
 ├── go.mod
@@ -33,6 +34,8 @@ catalog_1123150074│
 │
 └── routes
     └── router.go
+```
+
 
 ### Penjelasan
 | Folder       | Fungsi                                         |
@@ -46,6 +49,8 @@ catalog_1123150074│
 | routes       | definisi endpoint API                          |
 | images       | image untuk di readme                          |
 
+---
+
 ## API Endpoint
 Berikut Endpoint yang tersedia pada sistem.
 ### Health Check
@@ -54,3 +59,23 @@ GET /v1/health
 ```
 ![alt text](images/healthpostman.png)
 ![alt text](images/healthweb.png)
+
+---
+
+### Authentication
+```
+POST /v1/auth/verify-token
+```
+![alt text](images/login.png)
+
+---
+
+### Products
+```
+GET /v1/products
+```
+![alt text](images/getproduct.png)
+```
+GET /v1/products/:id
+```
+![alt text](images/getproductid.png)
