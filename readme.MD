@@ -1,7 +1,8 @@
 # Testing API Golang with Postman
 ## Struktur Project
 ```
-catalog_1123150074│
+catalog_1123150074
+│
 ├── main.go
 ├── go.mod
 ├── .env
@@ -79,3 +80,54 @@ GET /v1/products
 GET /v1/products/:id
 ```
 ![alt text](images/getproductid.png)
+
+---
+
+## Flow User
+![alt text](images/sequencuser.png)
+
+## Code
+```
+sequenceDiagram
+participant Client
+participant Middleware
+participant Handler
+participant Service
+participant Repository
+participant DB
+Client->>Middleware: HTTP Request
+Middleware->>Handler: forward request
+Handler->>Service: CreateUser()
+Service->>Repository: SaveUser()
+Repository->>DB: INSERT USER
+DB-->>Repository: OK
+Repository-->>Service: user saved
+Service-->>Handler: user response
+Handler-->>Client: JSON Response
+```
+
+---
+
+## Flow Product
+![alt text](images/sequencuser.png)
+
+## Code
+```
+sequenceDiagram
+participant Client
+participant Middleware
+participant Handler
+participant Service
+participant Repository
+participant DB
+
+Client->>Middleware: HTTP Request (GET /products)
+Middleware->>Handler: forward request
+Handler->>Service: GetAllProducts()
+Service->>Repository: FindAll()
+Repository->>DB: SELECT * FROM products
+DB-->>Repository: product list
+Repository-->>Service: products data
+Service-->>Handler: products response
+Handler-->>Client: JSON Response
+```
