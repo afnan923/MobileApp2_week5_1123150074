@@ -7,13 +7,14 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/afnan923/MobileApp2_week5_1123150074/config"
 	"github.com/afnan923/MobileApp2_week5_1123150074/routes"
+	"github.com/afnan923/MobileApp2_week5_1123150074/pkg/logger"
 )
 
 func main(){
 	if err := godotenv.Load(); err != nil {
 		log.Println("File .env tidak ditemukan, menggunakan environment variable sistem")
 	}
-
+	logger.Init()
 	config.InitFirebase()
 	
 	config.InitDatabase()
@@ -25,9 +26,13 @@ func main(){
 		port = "8080"
 	}
 
-	log.Printf("Server berjalan di http://localhost:%s", port)
-	log.Printf("Health check: http://localhost:%s/v1/health", port)
+	logger.L.Info("server starting",
+		"url", "http://0.0.0.0:"+port,
+		"health", "http://0.0.0.0:"+port+"/v1/health",
+	)
+	
 	if err := router.Run(":" + port); err != nil {
+		logger.L.Error("server gagal berjalan", "error", err)
 		log.Fatalf("Gagal menjalankan server: %v", err)
 	}
 }
