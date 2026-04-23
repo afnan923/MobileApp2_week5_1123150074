@@ -14,51 +14,42 @@ func main() {
 
 	products := []models.Product{
 		{
-			Name:        "Nasi Goreng Spesial",
-			Price:       25000,
-			Category:    "Makanan",
-			Stock:       50,
-			Description: "Nasi goreng gurih dengan topping telur, ayam, dan kerupuk.",
-			ImageURL:    "https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=600&h=400&fit=crop",
+			Name:        "Paket Pancing Pemula",
+			Price:       75000,
+			Category:    "Paket",
+			Stock:       20,
+			Description: "Paket lengkap untuk pemula: joran, reel, senar, dan umpan dasar.",
+			ImageURL:    "https://images.unsplash.com/photo-1578269174936-2709b6aeb913?q=80&w=600&h=400&fit=crop",
 		},
 		{
-			Name:        "Es Teh Manis",
-			Price:       5000,
-			Category:    "Minuman",
-			Stock:       100,
-			Description: "Minuman teh segar dengan es batu dan gula asli.",
-			ImageURL:    "https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=600&h=400&fit=crop",
+			Name:        "Paket Pancing Profesional",
+			Price:       250000,
+			Category:    "Paket",
+			Stock:       10,
+			Description: "Paket pancing kualitas tinggi untuk mancing di laut atau sungai besar.",
+			ImageURL:    "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?q=80&w=600&h=400&fit=crop",
 		},
 		{
-			Name:        "Nasi Megono",
-			Price:       15000,
-			Category:    "Makanan",
-			Stock:       40,
-			Description: "Nasi khas dengan cacahan nangka muda dan parutan kelapa berbumbu.",
-			ImageURL:    "https://images.unsplash.com/photo-1512058560366-cd24295982cd?q=80&w=600&h=400&fit=crop",
-		},
-		{
-			Name:        "Soto Tauco",
-			Price:       20000,
-			Category:    "Makanan",
+			Name:        "Paket Pancing Harian",
+			Price:       50000,
+			Category:    "Paket",
 			Stock:       30,
-			Description: "Soto daging/ayam dengan kuah tauco kental nan sedap.",
-			ImageURL:    "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=600&h=400&fit=crop",
+			Description: "Cocok untuk mancing santai di kolam atau danau.",
+			ImageURL:    "https://images.unsplash.com/photo-1525104698733-04c4cfa4f5b4?q=80&w=600&h=400&fit=crop",
 		},
 		{
-			Name:        "Telur Asin",
-			Price:       6000,
-			Category:    "Makanan",
-			Stock:       200,
-			Description: "Telur asin khas yang masir, gurih, dan berminyak.",
-			ImageURL:    "https://images.unsplash.com/photo-1587486912202-3e44b1d3f675?q=80&w=600&h=400&fit=crop",
+			Name:        "Paket Pancing Malam",
+			Price:       90000,
+			Category:    "Paket",
+			Stock:       15,
+			Description: "Dilengkapi lampu, pelampung, dan perlengkapan khusus mancing malam.",
+			ImageURL:    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&h=400&fit=crop",
 		},
 	}
-
 
 	for _, p := range products {
-		config.DB.Create(&p)
+		config.DB.Where("name = ?", p.Name).Assign(p).FirstOrCreate(&p)
 	}
 
-	log.Printf("Seed berhasil: %d produk kuliner dengan gambar baru telah ditambahkan!", len(products))
+	log.Printf("Seed berhasil: %d paket pancing ditambahkan!", len(products))
 }
